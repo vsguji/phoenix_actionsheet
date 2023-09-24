@@ -1,6 +1,6 @@
 name: phoenix_actionsheet
-description: A new Flutter package project.
-version: 0.0.1
+description: phoenix 将做为企业级基础组件:ActionSheet,提供项目支持。
+version: 1.0.0
 homepage: 'https://github.com/vsguji/phoenix_actionsheet.git'
 
 environment:
