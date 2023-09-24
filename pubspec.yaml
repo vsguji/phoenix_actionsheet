@@ -10,7 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  phoenix_base: ^1.0.6
+  phoenix_line: ^1.0.0 
+  phoenix_dialog: ^1.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
