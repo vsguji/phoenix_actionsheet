@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:phoenix_actionsheet/extension/actionsheet_total_config.dart';
 import 'package:phoenix_base/phoenix.dart';
+
+import '../extension/actionsheet_default_config_utils.dart';
 
 /// BrnActionSheet 主题配置
 class ActionSheetConfig extends BaseConfig {
   /// 遵循外部主题配置
-  /// 默认为 [BrnDefaultConfigUtils.defaultActionSheetConfig]
+  /// 默认为 [BaseActionSheetConfigUtils.defaultActionSheetConfig]
   ActionSheetConfig({
     BaseTextStyle? titleStyle,
     BaseTextStyle? itemTitleStyle,
@@ -116,46 +119,48 @@ class ActionSheetConfig extends BaseConfig {
   EdgeInsets? _titlePadding;
 
   double get topRadius =>
-      _topRadius ?? BrnDefaultConfigUtils.defaultActionSheetConfig.topRadius;
+      _topRadius ??
+      BaseActionSheetConfigUtils.defaultActionSheetConfig.topRadius;
 
   BaseTextStyle get titleStyle =>
-      _titleStyle ?? BrnDefaultConfigUtils.defaultActionSheetConfig.titleStyle;
+      _titleStyle ??
+      BaseActionSheetConfigUtils.defaultActionSheetConfig.titleStyle;
 
   BaseTextStyle get itemTitleStyle =>
       _itemTitleStyle ??
-      BrnDefaultConfigUtils.defaultActionSheetConfig.itemTitleStyle;
+      BaseActionSheetConfigUtils.defaultActionSheetConfig.itemTitleStyle;
 
   BaseTextStyle get itemTitleStyleLink =>
       _itemTitleStyleLink ??
-      BrnDefaultConfigUtils.defaultActionSheetConfig.itemTitleStyleLink;
+      BaseActionSheetConfigUtils.defaultActionSheetConfig.itemTitleStyleLink;
 
   BaseTextStyle get itemTitleStyleAlert =>
       _itemTitleStyleAlert ??
-      BrnDefaultConfigUtils.defaultActionSheetConfig.itemTitleStyleAlert;
+      BaseActionSheetConfigUtils.defaultActionSheetConfig.itemTitleStyleAlert;
 
   BaseTextStyle get itemDescStyle =>
       _itemDescStyle ??
-      BrnDefaultConfigUtils.defaultActionSheetConfig.itemDescStyle;
+      BaseActionSheetConfigUtils.defaultActionSheetConfig.itemDescStyle;
 
   BaseTextStyle get itemDescStyleLink =>
       _itemDescStyleLink ??
-      BrnDefaultConfigUtils.defaultActionSheetConfig.itemDescStyleLink;
+      BaseActionSheetConfigUtils.defaultActionSheetConfig.itemDescStyleLink;
 
   BaseTextStyle get itemDescStyleAlert =>
       _itemDescStyleAlert ??
-      BrnDefaultConfigUtils.defaultActionSheetConfig.itemDescStyleAlert;
+      BaseActionSheetConfigUtils.defaultActionSheetConfig.itemDescStyleAlert;
 
   BaseTextStyle get cancelStyle =>
       _cancelStyle ??
-      BrnDefaultConfigUtils.defaultActionSheetConfig.cancelStyle;
+      BaseActionSheetConfigUtils.defaultActionSheetConfig.cancelStyle;
 
   EdgeInsets get contentPadding =>
       _contentPadding ??
-      BrnDefaultConfigUtils.defaultActionSheetConfig.contentPadding;
+      BaseActionSheetConfigUtils.defaultActionSheetConfig.contentPadding;
 
   EdgeInsets get titlePadding =>
       _titlePadding ??
-      BrnDefaultConfigUtils.defaultActionSheetConfig.titlePadding;
+      BaseActionSheetConfigUtils.defaultActionSheetConfig.titlePadding;
 
   @override
   void initThemeConfig(

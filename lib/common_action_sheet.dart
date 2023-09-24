@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:phoenix_actionsheet/extension/actionsheet_total_config.dart';
+import 'package:phoenix_base/phoenix.dart';
 
 import 'config/action_sheet_config.dart';
 
@@ -85,7 +87,7 @@ class BrnCommonActionSheet extends StatelessWidget {
   final BrnCommonActionSheetItemClickInterceptor? onItemClickInterceptor;
 
   /// 主题定制
-  BrnActionSheetConfig? themeData;
+  ActionSheetConfig? themeData;
 
   BrnCommonActionSheet({
     required this.actions,
