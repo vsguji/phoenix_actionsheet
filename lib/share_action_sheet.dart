@@ -3,16 +3,16 @@ import 'package:phoenix_base/phoenix.dart';
 import 'package:phoenix_line/phoenix_line.dart';
 
 /// section为所在行数（0或1），index是在第几位（从0开始记）, shareItem为渠道相关信息
-typedef BrnShareActionSheetItemClickCallBack = void Function(
-    int section, int index, BrnShareItem shareItem);
+typedef ShareActionSheetItemClickCallBack = void Function(
+    int section, int index, ShareItem shareItem);
 
 /// 点击事件拦截回调（如果配置了此项，返回值为是否拦截，如果为true，则进行拦截，不进行默认回调）
 /// section为所在行数（0或1），index是在第几位（从0开始记）,shareItem为渠道相关信息
-typedef BrnShareActionSheetOnItemClickInterceptor = bool Function(
-    int section, int index, BrnShareItem shareItem);
+typedef ShareActionSheetOnItemClickInterceptor = bool Function(
+    int section, int index, ShareItem shareItem);
 
 /// 分享元素
-class BrnShareItem extends Object {
+class ShareItem extends Object {
   /// 分享类型（参考BrnShareItemConstants中的枚举，如果此项不为自定义，则自定义名称和图标不生效）
   int shareType;
 
@@ -25,7 +25,7 @@ class BrnShareItem extends Object {
   /// 是否可点击（如果为预设类型，设置为不可点击后会变为相应的置灰图标）默认为true
   bool canClick;
 
-  BrnShareItem(
+  ShareItem(
     this.shareType, {
     this.customTitle,
     this.customImage,
@@ -35,12 +35,12 @@ class BrnShareItem extends Object {
 
 /// 分享弹窗
 // ignore: must_be_immutable
-class BrnShareActionSheet extends StatelessWidget {
+class ShareActionSheet extends StatelessWidget {
   /// 第一行渠道列表
-  final List<BrnShareItem>? firstShareChannels;
+  final List<ShareItem>? firstShareChannels;
 
   /// 第二行渠道列表
-  final List<BrnShareItem>? secondShareChannels;
+  final List<ShareItem>? secondShareChannels;
 
   /// 列表标题
   final String? mainTitle;
@@ -55,12 +55,12 @@ class BrnShareActionSheet extends StatelessWidget {
   final Color shareTextColor;
 
   /// 点击事件回调
-  final BrnShareActionSheetItemClickCallBack? clickCallBack;
+  final ShareActionSheetItemClickCallBack? clickCallBack;
 
   /// 点击事件拦截回调（如果配置了此项，返回值为是否拦截，如果为true，则进行拦截，不进行默认回调）
-  final BrnShareActionSheetOnItemClickInterceptor? clickInterceptor;
+  final ShareActionSheetOnItemClickInterceptor? clickInterceptor;
 
-  BrnShareActionSheet({
+  ShareActionSheet({
     this.firstShareChannels,
     this.secondShareChannels,
     this.mainTitle,
@@ -74,7 +74,7 @@ class BrnShareActionSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: ShapeDecoration(
+        decoration: const ShapeDecoration(
           color: Color(0xffffffff),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
@@ -99,7 +99,7 @@ class BrnShareActionSheet extends StatelessWidget {
   /// 构建单个分享渠道
   Widget? _configChannelWidget(BuildContext context, int section, int index) {
     // 分享类型
-    BrnShareItem channel;
+    ShareItem channel;
     // 渠道名称
     String? title;
     // 图片
@@ -147,7 +147,7 @@ class BrnShareActionSheet extends StatelessWidget {
               width: itemsWidth,
               height: itemsWidth,
             ),
-            Divider(
+            const Divider(
               height: 8,
               color: Colors.transparent,
             ),
@@ -208,7 +208,7 @@ class BrnShareActionSheet extends StatelessWidget {
     // 添加title
     tiles.add(Container(
       alignment: Alignment.centerLeft,
-      padding: EdgeInsets.only(top: 16, left: 20),
+      padding: const EdgeInsets.only(top: 16, left: 20),
       child: Text(
         mainTitle ?? BrnIntl.of(context).localizedResource.shareTo,
         maxLines: 1,
@@ -240,8 +240,8 @@ class BrnShareActionSheet extends StatelessWidget {
     // 添加分割线
     tiles.add(Container(
       // 分割线左右填充20
-      padding: EdgeInsets.only(left: 20, right: 20),
-      child: Line(),
+      padding: const EdgeInsets.only(left: 20, right: 20),
+      child: const Line(),
     ));
 
     // 添加“自定义分享”容器
@@ -260,14 +260,15 @@ class BrnShareActionSheet extends StatelessWidget {
 
     // 添加分割线
     tiles.add(
-      Line(),
+      const Line(),
     );
 
     // 添加"取消"按钮
     tiles.add(GestureDetector(
         behavior: HitTestBehavior.opaque,
         child: Container(
-          padding: EdgeInsets.only(left: 61, right: 61, top: 12, bottom: 12),
+          padding:
+              const EdgeInsets.only(left: 61, right: 61, top: 12, bottom: 12),
           child: Center(
             child: Text(
               cancelTitle ?? BrnIntl.of(context).localizedResource.cancel,

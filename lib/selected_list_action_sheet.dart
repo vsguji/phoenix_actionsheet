@@ -7,16 +7,16 @@ import 'package:phoenix_line/phoenix_line.dart';
 import 'extension/actionsheet_assets.dart';
 
 /// 获取对应 index 行内容的回调。类型必须为 String 或者自定义的 widget.自定义 widget 时，左边的 icon 会自动隐藏，自定义widget填充整行。
-typedef BrnItemTitleBuilder<T> = dynamic Function(int index, T entity);
+typedef ItemTitleBuilder<T> = dynamic Function(int index, T entity);
 
 /// 每一行删除按钮的点击回调。返回值：是否要删除该 entity，如果该 handler 没有实现或者返回 true，则删除
-typedef BrnItemDeleteCallback<T> = bool Function(int deleteIdx, T deleteEntity);
+typedef ItemDeleteCallback<T> = bool Function(int deleteIdx, T deleteEntity);
 
 /// 视图隐藏时的回调，会把是否是清空按钮触发的销毁视图回传
-typedef BrnListDismissCallback = void Function(bool isClosedByClearButton);
+typedef ListDismissCallback = void Function(bool isClosedByClearButton);
 
 /// 监听数据刷新和列表关闭操作
-class BrnSelectedListActionSheetController extends ChangeNotifier {
+class SelectedListActionSheetController extends ChangeNotifier {
   /// 是否刷新数据
   bool isShouldReloadData = false;
 
@@ -53,7 +53,7 @@ class BrnSelectedListActionSheetController extends ChangeNotifier {
 ///    <20210618更>:也可以使用 [showWithTargetKey] 方法展示弹窗，传入已选列表底部组件绑定的 globalKey，已选列表会
 ///    自动与 globalKey 绑定的组件左右对齐，并从其顶部弹出。clear
 /// 2. 外界需要自己监听 Android 上的系统返回事件，并且调用组件的 [dismiss] 方法！否则，组件不能正常关闭。
-class BrnSelectedListActionSheet<T> {
+class SelectedListActionSheet<T> {
   /// 用来获取 Overlay
   final BuildContext context;
 
@@ -61,10 +61,10 @@ class BrnSelectedListActionSheet<T> {
   final List<T> items;
 
   /// 获取对应 index 行内容的回调。类型必须为 String 或者自定义的 widget.自定义 widget 时，左边的 icon 会自动隐藏，自定义widget填充整行。
-  final BrnItemTitleBuilder<T> itemTitleBuilder;
+  final ItemTitleBuilder<T> itemTitleBuilder;
 
   /// 控制视图隐藏/刷新列表等方法
-  final BrnSelectedListActionSheetController? controller;
+  final SelectedListActionSheetController? controller;
 
   /// 视图的最大高度。默认值 290，列表的内容的高度=maxHeight-65
   final double maxHeight;
@@ -106,13 +106,13 @@ class BrnSelectedListActionSheet<T> {
   final VoidCallback? onClearCanceled;
 
   /// 每一行删除按钮的点击回调。返回值：是否要删除该 entity，如果该 handler 没有实现或者返回 true，则删除
-  final BrnItemDeleteCallback<T>? onItemDelete;
+  final ItemDeleteCallback<T>? onItemDelete;
 
   /// 视图显示时的回调
   final VoidCallback? onListShowed;
 
   /// 视图隐藏时的回调，会把是否是清空按钮触发的销毁视图回传
-  final BrnListDismissCallback? onListDismissed;
+  final ListDismissCallback? onListDismissed;
 
   OverlayEntry? _overlayEntry;
   double? _leftOffset;
@@ -120,7 +120,7 @@ class BrnSelectedListActionSheet<T> {
   double? _maxWidth;
 
   /// create BrnSelectedListActionSheet
-  BrnSelectedListActionSheet(
+  SelectedListActionSheet(
       {required this.context,
       this.maxHeight = 290,
       this.bottomOffset = 82,
@@ -173,13 +173,13 @@ class BrnSelectedListActionSheet<T> {
     if (_overlayEntry != null) {
       return;
     }
-    BrnSelectedListActionSheetController? tempController = controller;
+    SelectedListActionSheetController? tempController = controller;
     if (tempController == null) {
-      tempController = BrnSelectedListActionSheetController();
+      tempController = SelectedListActionSheetController();
       tempController._isHidden = false;
     }
-    _BrnActionSheetSelectedItemListContentWidget content =
-        _BrnActionSheetSelectedItemListContentWidget<T>(
+    _ActionSheetSelectedItemListContentWidget content =
+        _ActionSheetSelectedItemListContentWidget<T>(
       itemWidget: this,
       onDismiss: (isClear) {
         this._dismissHandler(isClear);
@@ -219,12 +219,12 @@ class BrnSelectedListActionSheet<T> {
 }
 
 // ignore: must_be_immutable
-class _BrnActionSheetSelectedItemListContentWidget<T> extends StatefulWidget {
-  final BrnSelectedListActionSheet itemWidget;
+class _ActionSheetSelectedItemListContentWidget<T> extends StatefulWidget {
+  final SelectedListActionSheet itemWidget;
   final void Function(bool isClear)? onDismiss;
-  final BrnItemTitleBuilder<T> itemTitleBuilder;
-  final BrnItemDeleteCallback<T>? onItemDelete;
-  final BrnSelectedListActionSheetController? controller;
+  final ItemTitleBuilder<T> itemTitleBuilder;
+  final ItemDeleteCallback<T>? onItemDelete;
+  final SelectedListActionSheetController? controller;
 
   OverlayState? _overlayState;
 
@@ -236,7 +236,7 @@ class _BrnActionSheetSelectedItemListContentWidget<T> extends StatefulWidget {
   late AnimationController _yAnimationController;
   late AnimationController _alphaAnimationController;
 
-  _BrnActionSheetSelectedItemListContentWidget(
+  _ActionSheetSelectedItemListContentWidget(
       {required this.itemWidget,
       this.onDismiss,
       required this.itemTitleBuilder,
@@ -253,15 +253,14 @@ class _BrnActionSheetSelectedItemListContentWidget<T> extends StatefulWidget {
   }
 
   @override
-  State<StatefulWidget> createState() =>
-      _BrnActionSheetSelectedItemListState<T>();
+  State<StatefulWidget> createState() => _ActionSheetSelectedItemListState<T>();
 }
 
-class _BrnActionSheetSelectedItemListState<T>
-    extends State<_BrnActionSheetSelectedItemListContentWidget<T?>>
+class _ActionSheetSelectedItemListState<T>
+    extends State<_ActionSheetSelectedItemListContentWidget<T?>>
     with TickerProviderStateMixin {
   bool _isClosedByClear = false;
-  BrnSelectedListActionSheetController? _controller;
+  SelectedListActionSheetController? _controller;
 
   @override
   initState() {

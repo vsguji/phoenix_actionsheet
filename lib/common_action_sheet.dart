@@ -5,15 +5,15 @@ import 'package:phoenix_base/phoenix.dart';
 import 'config/action_sheet_config.dart';
 
 /// Action Item 的点击事件回调
-typedef BrnCommonActionSheetItemClickCallBack = void Function(
-    int index, BrnCommonActionSheetItem actionItem);
+typedef CommonActionSheetItemClickCallBack = void Function(
+    int index, CommonActionSheetItem actionItem);
 
 /// Action Item 点击事件拦截回调
-typedef BrnCommonActionSheetItemClickInterceptor = bool Function(
-    int index, BrnCommonActionSheetItem actionItem);
+typedef CommonActionSheetItemClickInterceptor = bool Function(
+    int index, CommonActionSheetItem actionItem);
 
 /// 每行样式
-enum BrnCommonActionSheetItemStyle {
+enum CommonActionSheetItemStyle {
   /// 默认样式
   normal,
 
@@ -25,7 +25,7 @@ enum BrnCommonActionSheetItemStyle {
 }
 
 /// create BrnCommonActionSheetItem
-class BrnCommonActionSheetItem {
+class CommonActionSheetItem {
   /// 标题文字
   String title;
 
@@ -33,7 +33,7 @@ class BrnCommonActionSheetItem {
   String? desc;
 
   /// 样式 [BrnActionSheetActionStyle]
-  final BrnCommonActionSheetItemStyle actionStyle;
+  final CommonActionSheetItemStyle actionStyle;
 
   /// 主标题文本样式
   final TextStyle? titleStyle;
@@ -41,10 +41,10 @@ class BrnCommonActionSheetItem {
   /// 辅助信息文本样式
   final TextStyle? descStyle;
 
-  BrnCommonActionSheetItem(
+  CommonActionSheetItem(
     this.title, {
     this.desc,
-    this.actionStyle = BrnCommonActionSheetItemStyle.normal,
+    this.actionStyle = CommonActionSheetItemStyle.normal,
     this.titleStyle,
     this.descStyle,
   });
@@ -53,10 +53,10 @@ class BrnCommonActionSheetItem {
 /// 吸底列表弹框，可自定义标题文案
 /// 可通过配置[BrnCommonActionSheetItemStyle]来设定 item 的样式
 // ignore: must_be_immutable
-class BrnCommonActionSheet extends StatelessWidget {
+class CommonActionSheet extends StatelessWidget {
   /// 每个选项相关的配置信息的列表
   /// 每个选项支持修改内容见[BrnCommonActionSheetItem]
-  final List<BrnCommonActionSheetItem> actions;
+  final List<CommonActionSheetItem> actions;
 
   /// ActionSheet 标题
   final String? title;
@@ -81,15 +81,15 @@ class BrnCommonActionSheet extends StatelessWidget {
   final double maxSheetHeight;
 
   /// Action Item 的点击事件
-  final BrnCommonActionSheetItemClickCallBack? clickCallBack;
+  final CommonActionSheetItemClickCallBack? clickCallBack;
 
   /// Action Item 点击事件拦截回调
-  final BrnCommonActionSheetItemClickInterceptor? onItemClickInterceptor;
+  final CommonActionSheetItemClickInterceptor? onItemClickInterceptor;
 
   /// 主题定制
   ActionSheetConfig? themeData;
 
-  BrnCommonActionSheet({
+  CommonActionSheet({
     required this.actions,
     this.title,
     this.titleWidget,
@@ -225,7 +225,7 @@ class BrnCommonActionSheet extends StatelessWidget {
     }
     return Flexible(
       child: ListView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         shrinkWrap: true,
         children: tiles,
       ),
@@ -234,7 +234,7 @@ class BrnCommonActionSheet extends StatelessWidget {
 
   /// 配置每个选项内部信息
   /// action 每个item配置项 [BrnCommonActionSheetItem]
-  Widget _configTile(BrnCommonActionSheetItem action) {
+  Widget _configTile(CommonActionSheetItem action) {
     List<Widget> tileElements = [];
     // 添加标题
     tileElements.add(Center(
@@ -242,16 +242,16 @@ class BrnCommonActionSheet extends StatelessWidget {
         action.title,
         maxLines: 1,
         style: action.titleStyle ??
-            (action.actionStyle == BrnCommonActionSheetItemStyle.alert
-                ? this.themeData!.itemTitleStyleAlert.generateTextStyle()
-                : (action.actionStyle == BrnCommonActionSheetItemStyle.link
-                    ? this.themeData!.itemTitleStyleLink.generateTextStyle()
-                    : this.themeData!.itemTitleStyle.generateTextStyle())),
+            (action.actionStyle == CommonActionSheetItemStyle.alert
+                ? themeData!.itemTitleStyleAlert.generateTextStyle()
+                : (action.actionStyle == CommonActionSheetItemStyle.link
+                    ? themeData!.itemTitleStyleLink.generateTextStyle()
+                    : themeData!.itemTitleStyle.generateTextStyle())),
       ),
     ));
     // 如果有辅助信息则添加辅助信息
     if (action.desc != null) {
-      tileElements.add(SizedBox(
+      tileElements.add(const SizedBox(
         height: 2,
       ));
       tileElements.add(
@@ -261,11 +261,11 @@ class BrnCommonActionSheet extends StatelessWidget {
             textAlign: TextAlign.center,
             maxLines: 1,
             style: action.descStyle ??
-                (action.actionStyle == BrnCommonActionSheetItemStyle.alert
-                    ? this.themeData!.itemDescStyleAlert.generateTextStyle()
-                    : (action.actionStyle == BrnCommonActionSheetItemStyle.link
-                        ? this.themeData!.itemDescStyleLink.generateTextStyle()
-                        : this.themeData!.itemDescStyle.generateTextStyle())),
+                (action.actionStyle == CommonActionSheetItemStyle.alert
+                    ? themeData!.itemDescStyleAlert.generateTextStyle()
+                    : (action.actionStyle == CommonActionSheetItemStyle.link
+                        ? themeData!.itemDescStyleLink.generateTextStyle()
+                        : themeData!.itemDescStyle.generateTextStyle())),
           ),
         ),
       );
@@ -285,12 +285,12 @@ class BrnCommonActionSheet extends StatelessWidget {
         Navigator.of(context).pop();
       },
       child: Container(
-        color: Color(0xffffffff),
-        padding: EdgeInsets.only(top: 12, bottom: 12),
+        color: const Color(0xffffffff),
+        padding: const EdgeInsets.only(top: 12, bottom: 12),
         child: Center(
           child: Text(
             cancelTitle ?? BrnIntl.of(context).localizedResource.cancel,
-            style: this.themeData!.cancelStyle.generateTextStyle(),
+            style: themeData!.cancelStyle.generateTextStyle(),
           ),
         ),
       ),
