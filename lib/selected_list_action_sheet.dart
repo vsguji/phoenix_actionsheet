@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:phoenix_base/phoenix.dart';
 import 'package:phoenix_dialog/phoenix_dialog.dart';
 import 'package:phoenix_line/phoenix_line.dart';
-
 import 'extension/actionsheet_assets.dart';
 
 /// 获取对应 index 行内容的回调。类型必须为 String 或者自定义的 widget.自定义 widget 时，左边的 icon 会自动隐藏，自定义widget填充整行。
@@ -257,7 +256,7 @@ class _ActionSheetSelectedItemListContentWidget<T> extends StatefulWidget {
 }
 
 class _ActionSheetSelectedItemListState<T>
-    extends State<_ActionSheetSelectedItemListContentWidget<T?>>
+    extends State<_ActionSheetSelectedItemListContentWidget<T>>
     with TickerProviderStateMixin {
   bool _isClosedByClear = false;
   SelectedListActionSheetController? _controller;

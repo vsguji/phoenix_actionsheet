@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: Scaffold(body: const MyHomePage(title: 'Flutter Demo Home Page')),
     );
   }
 }
@@ -68,6 +68,8 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+
+    /// 1
     ShareActionSheet actionSheet = ShareActionSheet(
       firstShareChannels: [ShareItem(BaseShareItemConstants.shareQQ)],
       mainTitle: '分享',
@@ -75,7 +77,43 @@ class _MyHomePageState extends State<MyHomePage> {
       cancelTitle: '取消',
       clickCallBack: (section, index, shareItem) {},
     );
-    actionSheet.show(context);
+    // actionSheet.show(context);
+
+    /// 2
+    CommonActionSheet commonActionSheet = CommonActionSheet(
+      actions: [
+        CommonActionSheetItem('001',
+            desc: '001_normal', actionStyle: CommonActionSheetItemStyle.normal),
+        CommonActionSheetItem('002',
+            desc: '002_link', actionStyle: CommonActionSheetItemStyle.link),
+        CommonActionSheetItem('003',
+            desc: '003_alert', actionStyle: CommonActionSheetItemStyle.alert)
+      ],
+    );
+    // showBottomSheet(
+    //   context: context,
+    //   builder: (context) => commonActionSheet,
+    // );
+
+    /// 3
+    SelectedListActionSheet<CommonActionSheetItem> listActionSheet =
+        SelectedListActionSheet<CommonActionSheetItem>(
+      context: context,
+      items: [
+        CommonActionSheetItem('001',
+            desc: '001_normal', actionStyle: CommonActionSheetItemStyle.normal),
+        CommonActionSheetItem('002',
+            desc: '002_link', actionStyle: CommonActionSheetItemStyle.link),
+        CommonActionSheetItem('003',
+            desc: '003_alert', actionStyle: CommonActionSheetItemStyle.alert)
+      ],
+      itemTitleBuilder: (index, entity) {
+        return Text(entity.title);
+      },
+      onClearConfirmed: () {},
+      onClear: () {},
+    );
+    listActionSheet.show();
   }
 
   @override

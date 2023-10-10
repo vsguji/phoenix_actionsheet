@@ -17,10 +17,10 @@ enum CommonActionSheetItemStyle {
   /// 默认样式
   normal,
 
-  /// 链接样式，颜色使用主题色号[BrnCommonConfig.brandPrimary]
+  /// 链接样式，颜色使用主题色号[CommonConfig.brandPrimary]
   link,
 
-  /// 警示项 ，颜色使用[BrnCommonConfig.brandError]
+  /// 警示项 ，颜色使用[CommonConfig.brandError]
   alert,
 }
 
