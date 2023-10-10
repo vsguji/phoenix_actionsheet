@@ -32,7 +32,7 @@ class CommonActionSheetItem {
   /// 辅助信息
   String? desc;
 
-  /// 样式 [BrnActionSheetActionStyle]
+  /// 样式 [CommonActionSheetItemStyle]
   final CommonActionSheetItemStyle actionStyle;
 
   /// 主标题文本样式
@@ -51,11 +51,11 @@ class CommonActionSheetItem {
 }
 
 /// 吸底列表弹框，可自定义标题文案
-/// 可通过配置[BrnCommonActionSheetItemStyle]来设定 item 的样式
+/// 可通过配置[CommonActionSheetItemStyle]来设定 item 的样式
 // ignore: must_be_immutable
 class CommonActionSheet extends StatelessWidget {
   /// 每个选项相关的配置信息的列表
-  /// 每个选项支持修改内容见[BrnCommonActionSheetItem]
+  /// 每个选项支持修改内容见[CommonActionSheetItem]
   final List<CommonActionSheetItem> actions;
 
   /// ActionSheet 标题
@@ -90,6 +90,7 @@ class CommonActionSheet extends StatelessWidget {
   ActionSheetConfig? themeData;
 
   CommonActionSheet({
+    super.key,
     required this.actions,
     this.title,
     this.titleWidget,

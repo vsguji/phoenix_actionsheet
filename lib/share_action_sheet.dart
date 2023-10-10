@@ -13,7 +13,7 @@ typedef ShareActionSheetOnItemClickInterceptor = bool Function(
 
 /// 分享元素
 class ShareItem extends Object {
-  /// 分享类型（参考BrnShareItemConstants中的枚举，如果此项不为自定义，则自定义名称和图标不生效）
+  /// 分享类型（参考ShareItemConstants中的枚举，如果此项不为自定义，则自定义名称和图标不生效）
   int shareType;
 
   /// 自定义标题
@@ -45,6 +45,9 @@ class ShareActionSheet extends StatelessWidget {
   /// 列表标题
   final String? mainTitle;
 
+  /// 列表标题对齐
+  final Alignment? mainTitleAlignment;
+
   /// 取消按钮名称
   final String? cancelTitle;
 
@@ -64,6 +67,7 @@ class ShareActionSheet extends StatelessWidget {
     this.firstShareChannels,
     this.secondShareChannels,
     this.mainTitle,
+    this.mainTitleAlignment,
     this.clickCallBack,
     this.clickInterceptor,
     this.cancelTitle,
@@ -126,10 +130,14 @@ class ShareActionSheet extends StatelessWidget {
     image = (channel.shareType == BaseShareItemConstants.shareCustom)
         ? channel.customImage
         : (channel.canClick
-            ? PhoenixTools.getAssetImage(BaseShareItemConstants
-                .shareItemImagePathList[channel.shareType])
-            : PhoenixTools.getAssetImage(BaseShareItemConstants
-                .disableShareItemImagePathList[channel.shareType]));
+            ? PhoenixTools.getAssetImage(
+                BaseShareItemConstants
+                    .shareItemImagePathList[channel.shareType],
+                package: 'phoenix_actionsheet')
+            : PhoenixTools.getAssetImage(
+                BaseShareItemConstants
+                    .disableShareItemImagePathList[channel.shareType],
+                package: 'phoenix_actionsheet'));
     //如果没图或没文字则不显示
     if (image == null) {
       return null;
@@ -207,7 +215,7 @@ class ShareActionSheet extends StatelessWidget {
     }
     // 添加title
     tiles.add(Container(
-      alignment: Alignment.centerLeft,
+      alignment: mainTitleAlignment ?? Alignment.centerLeft,
       padding: const EdgeInsets.only(top: 16, left: 20),
       child: Text(
         mainTitle ?? BrnIntl.of(context).localizedResource.shareTo,

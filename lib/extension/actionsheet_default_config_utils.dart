@@ -47,7 +47,8 @@ extension BaseActionSheetConfigUtils on BaseDefaultConfigUtils {
       fontSize: BaseDefaultConfigUtils.defaultCommonConfig.fontSizeSubHead,
       fontWeight: FontWeight.w600,
     ),
-    titlePadding: EdgeInsets.symmetric(horizontal: 60.0, vertical: 16.0),
-    contentPadding: EdgeInsets.symmetric(horizontal: 60.0, vertical: 12.0),
+    titlePadding: const EdgeInsets.symmetric(horizontal: 60.0, vertical: 16.0),
+    contentPadding:
+        const EdgeInsets.symmetric(horizontal: 60.0, vertical: 12.0),
   );
 }
