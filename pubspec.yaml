@@ -1,6 +1,6 @@
 name: phoenix_actionsheet
 description: phoenix 将做为企业级基础组件:ActionSheet,提供项目支持。
-version: 1.0.5
+version: 1.0.6
 homepage: 'https://github.com/vsguji/phoenix_actionsheet.git'
 
 environment:
