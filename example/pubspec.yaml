@@ -33,6 +33,14 @@ dependencies:
 
   phoenix_actionsheet: 
     path: ../ 
+  phoenix_line: ^1.0.1  
+  phoenix_tag: ^1.0.3
+  phoenix_navbar: ^1.0.4
+  phoenix_toast: ^1.0.1
+  phoenix_base: ^1.2.1
+  phoenix_btn: ^1.0.8
+  phoenix_form: ^1.0.2
+  phoenix_dialog: ^1.0.5
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2

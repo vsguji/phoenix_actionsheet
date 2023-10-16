@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:phoenix_actionsheet/phoenix_actionsheet.dart';
 import 'package:phoenix_base/phoenix.dart';
 
+import 'actionsheet_entry_page.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -33,7 +35,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Scaffold(body: const MyHomePage(title: 'Flutter Demo Home Page')),
+      home: ActionSheetEntryPage('ActionSheet'),
     );
   }
 }
