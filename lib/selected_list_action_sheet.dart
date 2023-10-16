@@ -334,7 +334,7 @@ class _ActionSheetSelectedItemListState<T>
     if (widget.itemWidget.onClear == null) {
       // 如果没有实现 onClear，执行默认弹窗并删除的逻辑
       this.dismissContent(true);
-      BrnDialogManager.showConfirmDialog(context,
+      DialogManager.showConfirmDialog(context,
           title: BrnIntl.of(context).localizedResource.confirmClearSelectedList,
           cancel: BrnIntl.of(context).localizedResource.cancel,
           confirm: BrnIntl.of(context).localizedResource.ok, onConfirm: () {
