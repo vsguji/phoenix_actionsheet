@@ -1,6 +1,6 @@
 name: phoenix_actionsheet
 description: phoenix 将做为企业级基础组件:ActionSheet,提供项目支持。
-version: 1.0.8
+version: 1.0.9
 homepage: 'https://github.com/vsguji/phoenix_actionsheet.git'
 
 environment:
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  phoenix_base: ^1.0.8
+  phoenix_base: ^1.2.4
   phoenix_line: ^1.0.0 
   phoenix_dialog: ^1.0.7
 dev_dependencies:

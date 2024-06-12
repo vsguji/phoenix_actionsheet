@@ -2,7 +2,7 @@
  * @Author: lipeng 1162423147@qq.com
  * @Date: 2023-09-24 18:35:23
  * @LastEditors: lipeng 1162423147@qq.com
- * @LastEditTime: 2023-10-16 15:37:10
+ * @LastEditTime: 2024-06-12 16:52:17
  * @FilePath: /phoenix_actionsheet/CHANGELOG.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -37,4 +37,8 @@
 
 ## 1.0.8
 
-* [更闹心] phoenix_dialog: ^1.0.7
+* [更新] phoenix_dialog: ^1.0.7
+
+## 1.0.9
+
+* [更新] phoenix_base: ^1.2.4
